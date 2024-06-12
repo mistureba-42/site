@@ -12,14 +12,13 @@ def contato():
 
 @app.route("/produtos")
 def produtos():
-    produtos = {
-        ("nome": "coca": "descrição": "bom"),
-        ("nome": "guarana": "descrição": "o melhor"),
-        ("nome": "pepsi": "descrição": "ruim"),
-    }
 
     return render_template("produtos.html", produtos = produtos)
 
 @app.route("/produtos/<nome>")
 def produtos(nome):
-    return nome
+    for produto in lista_de_produtos:
+        if produto["nome"] == nome:
+            return render_template("produto.html", produto=produto)
+
+    return "produto nao existe"
