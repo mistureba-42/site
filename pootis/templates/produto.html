@@ -4,4 +4,9 @@
 
 {% block content %}
 <h1>{{produto.nome}}</h1>
-<p>{{produto.descricao}}</p>{% endblock %}
+<p>{{produto.descricao}}</p>
+<p>{{produto.preco}}</p>
+<img src="{{produto.imagem}}" alt="">
+<a href="/produto/{{produto.nome}}">ver detalhes</a>
+
+{% endblock %}
