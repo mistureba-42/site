@@ -33,7 +33,7 @@ def produtos(nome):
 def cadastro_produto():
     return render_template("cadastro-produto.html")
 
-@app.route("/produtos", methods=["POST"])
+@app.route("/produtos", method=["POST"])
 def salvar_produto():
     nome = request.form["nome"]
     descricao = request.form["descricao"]
