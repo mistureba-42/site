@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
+from validate_docbr import CPF, CNPJ
 
 app = Flask(__name__)
 
@@ -45,3 +46,35 @@ def salvar_produto():
 
 
     return redirect(url_for("produtos"))
+
+@app.route("/Gerar_CPF")
+def gerar_cpf():
+    cpf = CPF()
+    new_cpf = cpf.generate()
+
+    return "<h1>{{cpf}}</h1>"
+
+@app.route("/Gerar_CNPJ")
+def gerar_cpf():
+    cnpj = CNPJ()
+    new_cnpj = cnpj.generate()
+
+    return "<h1>{{cnpj}}</h1>"
+
+@app.route("/Validar_CPF", method=["POST"])
+def validar_cpf():
+    cpf = request.form["cpf"]
+
+    cpf = CPF()
+    cpf.validate()    
+
+    return "<h1>{{cpf.validate}}</h1>"
+
+@app.route("/Validar_CNPJ", method=["POST"])
+def validar_cnpj():
+    cnpj = request.form["cnpj"]
+
+    cnpj = CNPJ()
+    cnpj.validate()
+
+    return "<h1>{{cnpj.validate}}</h1>"
