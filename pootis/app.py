@@ -35,15 +35,10 @@ def cadastro_produto():
     return render_template("cadastro-produto.html")
 
 @app.route("/produtos", method=["POST"])
-def salvar_produto():
-    nome = request.form["nome"]
-    descricao = request.form["descricao"]
-    preco = request.form["preco"]
-    imagem = request.form["imagem"]
-
-    produto = {"nome" : nome, "descricao" : descricao, "preco" : preco, "imagem": imagem}
-    lista_produtos.append(produto)
-
+def salvar_produto(p):
+    linha = f"" ((p ["nome"]),(p ["descricao"]), (p ["preco"]),(p ["imagem"]), "\n" )
+    with open ("produtos.csv", "w") as file:
+        file.write(linha)
 
     return redirect(url_for("produtos"))
 
@@ -78,3 +73,11 @@ def validar_cnpj():
     cnpj.validate()
 
     return "<h1>{{cnpj.validate}}</h1>"
+
+p1 = []["nome": "jaca_madura",
+        "descricao": "fruta boa",
+        "preco": "15.00",
+        "imagem": "jaca.png"
+        ]
+
+salvar_produto(p1)
